@@ -8,7 +8,7 @@ The following topics are discussed:
 
 * [Weave Cloud](#service-mode)
 * [Standalone Mode](#stand-alone-mode)
-* [Disabling Automatic Updates](#disable)
+* [Disabling Update Checks](#disable)
 
 Weave Scope consists of two components: the app and the probe. The components are deployed as a single Docker container using the scope script. The probe is responsible for gathering information about the host on which it is running. This information is sent to the app in the form of a report. The app processes reports from the probe into usable topologies, serving the UI, as well as pushing these topologies to the UI.
 
@@ -75,7 +75,7 @@ The cloud token is accessible from the settings page after you've clicked 'Explo
 
 ![Weave Cloud Token](images/weave-cloud-token.png)
 
-## <a name="disable"></a>Disabling Automatic Updates
+## <a name="disable"></a>Disabling Update Checks
 
 Scope periodically checks with our servers to see if a new version is available. You can disable this by setting:
 
