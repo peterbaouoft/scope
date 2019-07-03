@@ -12,7 +12,7 @@ SCOPE_BACKEND_BUILD_IMAGE=$(DOCKERHUB_USER)/scope-backend-build
 SCOPE_BACKEND_BUILD_UPTODATE=.scope_backend_build.uptodate
 SCOPE_VERSION=$(shell git rev-parse --short HEAD)
 GIT_REVISION=$(shell git rev-parse HEAD)
-WEAVENET_VERSION=2.1.3
+WEAVENET_VERSION=2.5.2
 RUNSVINIT=vendor/runsvinit/runsvinit
 CODECGEN_DIR=vendor/github.com/ugorji/go/codec/codecgen
 CODECGEN_EXE=$(CODECGEN_DIR)/bin/codecgen_$(shell go env GOHOSTOS)_$(shell go env GOHOSTARCH)
@@ -56,11 +56,10 @@ cri: update-cri protoc-gen-gofast
 	@cd $(GOPATH)/src;protoc --proto_path=$(GOPATH)/src --gofast_out=plugins=grpc:. github.com/weaveworks/scope/cri/runtime/api.proto
 
 docker/weave:
-	curl -L https://github.com/weaveworks/weave/releases/download/v$(WEAVENET_VERSION)/weave -o docker/weave
 	chmod u+x docker/weave
 
 docker/weaveutil:
-	$(SUDO) docker run --rm  --entrypoint=cat weaveworks/weaveexec:$(WEAVENET_VERSION) /usr/bin/weaveutil > $@
+	$(SUDO) docker run --rm  --entrypoint=cat weaveworks/weaveexec-s390x:latest /usr/bin/weaveutil > $@
 	chmod +x $@
 
 docker/%: %
